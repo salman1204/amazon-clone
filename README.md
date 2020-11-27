@@ -2,7 +2,7 @@
 
 ✅ **The Technology I've used here:**   
     1️⃣ React [ Functional Component + Context API + Hook + React Route]  
-    2️⃣ Firebase (Authentication + Cloud Firestoe + Deployment)   
+    2️⃣ Firebase (Authentication + Cloud Firestore + Deployment)   
     3️⃣ Payment Gateway (Stripe)  
     4️⃣ ES6 (map,reduce,arrow function, let/const, splice) + Material Ui + HTML + CSS   
     5️⃣ Dependency: react-currency-format
