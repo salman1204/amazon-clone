@@ -5,29 +5,34 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import { useEffect } from "react";
-import firebase from "firebase/app";
 import { useDataLayerValue } from "./DataLayer";
+import { auth } from "./firebaseConfig";
 
 function App() {
   
   const [{} , dispatch] = useDataLayerValue();
 
-  useEffect = (()=>{
-      firebase.auth.onAuthStateChanged(authUser => {
-        console.log(authUser);
-        if (authUser) {
-          dispatch({
-            type: "SET_USER",
-            user: authUser
-          })
-        }
-        else {
-          dispatch({
-            type:"SET_USER",
-            user:null
-          })
-        }
-      })
+  useEffect(() => {
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the user just logged in / the user was logged in
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
   }, []);
 
   return (

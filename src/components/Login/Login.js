@@ -1,8 +1,7 @@
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import "./Login.css";
-import firebase from "firebase/app";
-import "../../firebaseConfig";
+import { auth } from "../../firebaseConfig";
 
 const Login = () => {
   const history = useHistory();
@@ -11,8 +10,7 @@ const Login = () => {
 
   const signIn = (e) => {
     e.preventDefault();
-    firebase
-      .auth()
+       auth()
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
@@ -26,8 +24,7 @@ const Login = () => {
 
   const register = (e) => {
     e.preventDefault();
-    firebase
-      .auth()
+      auth()
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
