@@ -5,7 +5,7 @@ import "./Checkout.css";
 import { useDataLayerValue } from "../../DataLayer";
 
 const Checkout = () => {
-  const [{ basket }, dispatch] = useDataLayerValue();
+  const [{ basket, user }, dispatch] = useDataLayerValue();
 
   return (
     <div className="checkout">
@@ -16,6 +16,7 @@ const Checkout = () => {
           alt="checkout ad"
         />
         <div>
+          <h3>Hello, {user ? user.email : 'Guest'}</h3>
           <h2 className="checkout__title">Your shopping basket</h2>
           {basket.map((item) => (
             <CheckoutProduct

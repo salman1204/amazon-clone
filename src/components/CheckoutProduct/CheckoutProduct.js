@@ -2,7 +2,7 @@ import React from "react";
 import "./CheckoutProduct.css";
 import { useDataLayerValue } from "../../DataLayer";
 
-const CheckoutProduct = ({ id, image, title, rating, price }) => {
+const CheckoutProduct = ({ id, image, title, rating, price, hideButton }) => {
 
   const [{ basket }, dispatch] = useDataLayerValue();
 
@@ -28,7 +28,9 @@ const CheckoutProduct = ({ id, image, title, rating, price }) => {
             <p>⭐</p>
           ))}
         </div>
-        <button onClick={removeFromBasket}>Remove from basket</button>
+        {!hideButton && (
+          <button onClick={removeFromBasket}>Remove from basket</button>
+        )}
       </div>
      
     </div>

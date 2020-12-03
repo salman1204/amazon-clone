@@ -6,27 +6,29 @@ import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import { useEffect } from "react";
 import { useDataLayerValue } from "./DataLayer";
-import { auth } from "./firebaseConfig";
+import firebase from 'firebase/app'
+import Payment from "./components/Payment/Payment";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import Orders from "./components/Orders/Orders";
+
+const stripePromise = loadStripe('pk_test_51Hs9VnI11fl0uqZFoJnAGDKaaS44T026c46zIIgKigrlYq8QaNkbi1C2VvYXMAz6HkgjjAnJ5lySM341iO7Iba0F00kGItFgtR');
 
 function App() {
   
   const [{} , dispatch] = useDataLayerValue();
 
   useEffect(() => {
-    // will only run once when the app component loads...
-
-    auth.onAuthStateChanged((authUser) => {
+  
+    firebase.auth().onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>> ", authUser);
 
       if (authUser) {
-        // the user just logged in / the user was logged in
-
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
       } else {
-        // the user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
@@ -39,12 +41,20 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+        <Route path="/orders">
+        <Header />  
+            <Orders />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/checkout">
             <Header />  
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header /> 
+            <Elements stripe={stripePromise}><Payment/></Elements>  
           </Route>
           <Route path="/">
             <Header />
