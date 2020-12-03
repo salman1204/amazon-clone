@@ -1,4 +1,5 @@
 **Live Website Link:  https://clone-ad9dc.web.app/**
+[N.B: The live link doesn't connect with the Cloud Firestore because of not having a Blaze account in firebase [ I don't have credit card :( ]. So you may not process the order. But everything works fine in the localhostt]
 
 ✅ **The Technology I've used here:**   
     1️⃣ React [ Functional Component + Context API + Hook + React Route]  
